@@ -2379,6 +2379,21 @@ extern __bank0 __bit __timeout;
 
 
 
+#pragma config FOSC = INTRC_NOCLKOUT
+#pragma config WDTE = OFF
+#pragma config PWRTE = OFF
+#pragma config MCLRE = ON
+#pragma config CP = OFF
+#pragma config CPD = OFF
+#pragma config BOREN = ON
+#pragma config IESO = ON
+#pragma config FCMEN = ON
+#pragma config LVP = OFF
+
+
+#pragma config BOR4V = BOR40V
+#pragma config WRT = OFF
+
 void delay(void) {
 
     unsigned int i;
@@ -2389,9 +2404,23 @@ void delay(void) {
 
 void main(void) {
 
-    int tmp = 0x01;
+    unsigned char buff;
 
+    buff = 0x01;
+    OSCCON = 0x71;
     TRISB = 0x00;
-    PORTB = 0xFF;
+    PORTB = buff;
+    while (1) {
+
+        _delay((unsigned long)((100)*(8000000/4000.0)));
+        if (buff == 0x08) {
+            buff = 0x01;
+        }
+        else {
+            buff = buff << 1;
+        }
+        PORTB = buff;
+    }
+
     return;
 }

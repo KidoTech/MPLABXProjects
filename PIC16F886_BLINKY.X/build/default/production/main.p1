@@ -1,9 +1,15 @@
 Version 4.0 HI-TECH Software Intermediate Code
 [p mainexit ]
-"1399 /Applications/microchip/mplabx/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8/pic/include/proc/PIC16F886.h
+"1704 /Applications/microchip/mplabx/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8/pic/include/proc/PIC16F886.h
+[v _OSCCON `Vuc ~T0 @X0 0 e@143 ]
+"1399
 [v _TRISB `Vuc ~T0 @X0 0 e@134 ]
 "228
 [v _PORTB `Vuc ~T0 @X0 0 e@6 ]
+[v F1196 `(v ~T0 @X0 1 tf1`ul ]
+"92 /Applications/microchip/mplabx/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8/pic/include/pic.h
+[v __delay `JF1196 ~T0 @X0 0 e ]
+[p i __delay ]
 "54 /Applications/microchip/mplabx/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8/pic/include/proc/PIC16F886.h
 [; <" INDF equ 00h ;# ">
 "61
@@ -157,16 +163,50 @@ Version 4.0 HI-TECH Software Intermediate Code
 "3370
 [; <" EECON2 equ 018Dh ;# ">
 "13 main.c
-[; ;main.c: 13: void delay(void) {
+[; ;main.c: 13:     OSCCON = 0x71;
+[p x FOSC  =  INTRC_NOCLKOUT ]
+"14
+[; ;main.c: 14:     TRISB = 0x00;
+[p x WDTE  =  OFF        ]
+"15
+[; ;main.c: 15:     PORTB = buff;
+[p x PWRTE  =  OFF       ]
+"16
+[; ;main.c: 16:     while (1) {
+[p x MCLRE  =  ON        ]
+"17
+[; ;main.c: 17: 
+[p x CP  =  OFF          ]
+"18
+[; ;main.c: 18:         _delay((unsigned long)((100)*(8000000/4000.0)));
+[p x CPD  =  OFF         ]
+"19
+[; ;main.c: 19:         if (buff == 0x08) {
+[p x BOREN  =  ON        ]
+"20
+[; ;main.c: 20:             buff = 0x01;
+[p x IESO  =  ON         ]
+"21
+[; ;main.c: 21:         }
+[p x FCMEN  =  ON        ]
+"22
+[; ;main.c: 22:         else {
+[p x LVP  =  OFF         ]
+"25
+[; ;main.c: 25:         PORTB = buff;
+[p x BOR4V  =  BOR40V    ]
+"26
+[; ;main.c: 26:     }
+[p x WRT  =  OFF         ]
+"28
+[; ;main.c: 28:     return;
 [v _delay `(v ~T0 @X0 1 ef ]
 {
 [e :U _delay ]
 [f ]
-"15
-[; ;main.c: 15:     unsigned int i;
+"30
 [v _i `ui ~T0 @X0 1 a ]
-"17
-[; ;main.c: 17:     for (i=0; i<=30000; i++);
+"32
 {
 [e = _i -> -> 0 `i `ui ]
 [e $ <= _i -> -> 30000 `i `ui 135  ]
@@ -176,31 +216,55 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ <= _i -> -> 30000 `i `ui 135  ]
 [e :U 136 ]
 }
-"18
-[; ;main.c: 18: }
+"33
 [e :UE 134 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"21
-[; ;main.c: 21: void main(void) {
+"36
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"23
-[; ;main.c: 23:     int tmp = 0x01;
-[v _tmp `i ~T0 @X0 1 a ]
-[e = _tmp -> 1 `i ]
-"25
-[; ;main.c: 25:     TRISB = 0x00;
+"38
+[v _buff `uc ~T0 @X0 1 a ]
+"40
+[e = _buff -> -> 1 `i `uc ]
+"41
+[e = _OSCCON -> -> 113 `i `uc ]
+"42
 [e = _TRISB -> -> 0 `i `uc ]
-"26
-[; ;main.c: 26:     PORTB = 0xFF;
-[e = _PORTB -> -> 255 `i `uc ]
-"27
-[; ;main.c: 27:     return;
+"43
+[e = _PORTB _buff ]
+"44
+[e :U 140 ]
+{
+"46
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"47
+[e $ ! == -> _buff `i -> 8 `i 142  ]
+{
+"48
+[e = _buff -> -> 1 `i `uc ]
+"49
+}
+[e $U 143  ]
+"50
+[e :U 142 ]
+{
+"51
+[e = _buff -> << -> _buff `i -> 1 `i `uc ]
+"52
+}
+[e :U 143 ]
+"53
+[e = _PORTB _buff ]
+"54
+}
+[e :U 139 ]
+[e $U 140  ]
+[e :U 141 ]
+"56
 [e $UE 138  ]
-"28
-[; ;main.c: 28: }
+"57
 [e :UE 138 ]
 }
