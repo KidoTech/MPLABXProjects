@@ -1,0 +1,406 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"777 /Applications/microchip/mplabx/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8/pic/include/proc/PIC16F886.h
+[s S28 :4 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S28 . SSPM CKP SSPEN SSPOV WCOL ]
+"784
+[s S29 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S29 . SSPM0 SSPM1 SSPM2 SSPM3 ]
+"776
+[u S27 `S28 1 `S29 1 ]
+[n S27 . . . ]
+"791
+[v _SSPCONbits `VS27 ~T0 @X0 0 e@20 ]
+"1890
+[v _SSPADD `Vuc ~T0 @X0 0 e@147 ]
+[v F1207 `(v ~T0 @X0 1 tf1`ul ]
+"92 /Applications/microchip/mplabx/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8/pic/include/pic.h
+[v __delay `JF1207 ~T0 @X0 0 e ]
+[p i __delay ]
+"464 /Applications/microchip/mplabx/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8/pic/include/proc/PIC16F886.h
+[s S17 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S17 . TMR1IF TMR2IF CCP1IF SSPIF TXIF RCIF ADIF ]
+"463
+[u S16 `S17 1 ]
+[n S16 . . ]
+"474
+[v _PIR1bits `VS16 ~T0 @X0 0 e@12 ]
+"764
+[v _SSPBUF `Vuc ~T0 @X0 0 e@19 ]
+"1827
+[s S72 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S72 . SEN RSEN PEN RCEN ACKEN ACKDT ACKSTAT GCEN ]
+"1826
+[u S71 `S72 1 ]
+[n S71 . . ]
+"1838
+[v _SSPCON2bits `VS71 ~T0 @X0 0 e@145 ]
+"54 /Applications/microchip/mplabx/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8/pic/include/proc/PIC16F886.h
+[; <" INDF equ 00h ;# ">
+"61
+[; <" TMR0 equ 01h ;# ">
+"68
+[; <" PCL equ 02h ;# ">
+"75
+[; <" STATUS equ 03h ;# ">
+"161
+[; <" FSR equ 04h ;# ">
+"168
+[; <" PORTA equ 05h ;# ">
+"230
+[; <" PORTB equ 06h ;# ">
+"292
+[; <" PORTC equ 07h ;# ">
+"354
+[; <" PORTE equ 09h ;# ">
+"375
+[; <" PCLATH equ 0Ah ;# ">
+"382
+[; <" INTCON equ 0Bh ;# ">
+"460
+[; <" PIR1 equ 0Ch ;# ">
+"516
+[; <" PIR2 equ 0Dh ;# ">
+"573
+[; <" TMR1 equ 0Eh ;# ">
+"580
+[; <" TMR1L equ 0Eh ;# ">
+"587
+[; <" TMR1H equ 0Fh ;# ">
+"594
+[; <" T1CON equ 010h ;# ">
+"688
+[; <" TMR2 equ 011h ;# ">
+"695
+[; <" T2CON equ 012h ;# ">
+"766
+[; <" SSPBUF equ 013h ;# ">
+"773
+[; <" SSPCON equ 014h ;# ">
+"843
+[; <" CCPR1 equ 015h ;# ">
+"850
+[; <" CCPR1L equ 015h ;# ">
+"857
+[; <" CCPR1H equ 016h ;# ">
+"864
+[; <" CCP1CON equ 017h ;# ">
+"961
+[; <" RCSTA equ 018h ;# ">
+"1056
+[; <" TXREG equ 019h ;# ">
+"1063
+[; <" RCREG equ 01Ah ;# ">
+"1070
+[; <" CCPR2 equ 01Bh ;# ">
+"1077
+[; <" CCPR2L equ 01Bh ;# ">
+"1084
+[; <" CCPR2H equ 01Ch ;# ">
+"1091
+[; <" CCP2CON equ 01Dh ;# ">
+"1161
+[; <" ADRESH equ 01Eh ;# ">
+"1168
+[; <" ADCON0 equ 01Fh ;# ">
+"1269
+[; <" OPTION_REG equ 081h ;# ">
+"1339
+[; <" TRISA equ 085h ;# ">
+"1401
+[; <" TRISB equ 086h ;# ">
+"1463
+[; <" TRISC equ 087h ;# ">
+"1525
+[; <" TRISE equ 089h ;# ">
+"1546
+[; <" PIE1 equ 08Ch ;# ">
+"1602
+[; <" PIE2 equ 08Dh ;# ">
+"1659
+[; <" PCON equ 08Eh ;# ">
+"1706
+[; <" OSCCON equ 08Fh ;# ">
+"1771
+[; <" OSCTUNE equ 090h ;# ">
+"1823
+[; <" SSPCON2 equ 091h ;# ">
+"1885
+[; <" PR2 equ 092h ;# ">
+"1892
+[; <" SSPADD equ 093h ;# ">
+"1899
+[; <" SSPMSK equ 093h ;# ">
+"1904
+[; <" MSK equ 093h ;# ">
+"2021
+[; <" SSPSTAT equ 094h ;# ">
+"2190
+[; <" WPUB equ 095h ;# ">
+"2260
+[; <" IOCB equ 096h ;# ">
+"2330
+[; <" VRCON equ 097h ;# ">
+"2400
+[; <" TXSTA equ 098h ;# ">
+"2486
+[; <" SPBRG equ 099h ;# ">
+"2548
+[; <" SPBRGH equ 09Ah ;# ">
+"2618
+[; <" PWM1CON equ 09Bh ;# ">
+"2688
+[; <" ECCPAS equ 09Ch ;# ">
+"2770
+[; <" PSTRCON equ 09Dh ;# ">
+"2814
+[; <" ADRESL equ 09Eh ;# ">
+"2821
+[; <" ADCON1 equ 09Fh ;# ">
+"2855
+[; <" WDTCON equ 0105h ;# ">
+"2908
+[; <" CM1CON0 equ 0107h ;# ">
+"2973
+[; <" CM2CON0 equ 0108h ;# ">
+"3038
+[; <" CM2CON1 equ 0109h ;# ">
+"3089
+[; <" EEDATA equ 010Ch ;# ">
+"3094
+[; <" EEDAT equ 010Ch ;# ">
+"3101
+[; <" EEADR equ 010Dh ;# ">
+"3108
+[; <" EEDATH equ 010Eh ;# ">
+"3115
+[; <" EEADRH equ 010Fh ;# ">
+"3122
+[; <" SRCON equ 0185h ;# ">
+"3179
+[; <" BAUDCTL equ 0187h ;# ">
+"3231
+[; <" ANSEL equ 0188h ;# ">
+"3275
+[; <" ANSELH equ 0189h ;# ">
+"3325
+[; <" EECON1 equ 018Ch ;# ">
+"3370
+[; <" EECON2 equ 018Dh ;# ">
+"21 I2C.c
+[; ;I2C.c: 21: void I2C_Init(void){
+[v _I2C_Init `(v ~T0 @X0 1 ef ]
+{
+[e :U _I2C_Init ]
+[f ]
+"27
+[; ;I2C.c: 27:     SSPCONbits.SSPM=0x08;
+[e = . . _SSPCONbits 0 0 -> -> 8 `i `uc ]
+"28
+[; ;I2C.c: 28:     SSPCONbits.SSPEN=1;
+[e = . . _SSPCONbits 0 2 -> -> 1 `i `uc ]
+"40
+[; ;I2C.c: 40:     SSPADD = 19;
+[e = _SSPADD -> -> 19 `i `uc ]
+"43
+[; ;I2C.c: 43:     _delay((unsigned long)((10)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"44
+[; ;I2C.c: 44: }
+[e :UE 134 ]
+}
+"50
+[; ;I2C.c: 50: void Send_I2C_Data(unsigned char databyte)
+[v _Send_I2C_Data `(v ~T0 @X0 1 ef1`uc ]
+"51
+[; ;I2C.c: 51: {
+{
+[e :U _Send_I2C_Data ]
+"50
+[; ;I2C.c: 50: void Send_I2C_Data(unsigned char databyte)
+[v _databyte `uc ~T0 @X0 1 r1 ]
+"51
+[; ;I2C.c: 51: {
+[f ]
+"52
+[; ;I2C.c: 52:     PIR1bits.SSPIF=0;
+[e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
+"53
+[; ;I2C.c: 53:     SSPBUF = databyte;
+[e = _SSPBUF _databyte ]
+"54
+[; ;I2C.c: 54:     while(!PIR1bits.SSPIF);
+[e $U 136  ]
+[e :U 137 ]
+[e :U 136 ]
+[e $ ! != -> . . _PIR1bits 0 3 `i -> 0 `i 137  ]
+[e :U 138 ]
+"55
+[; ;I2C.c: 55: }
+[e :UE 135 ]
+}
+"61
+[; ;I2C.c: 61: unsigned int Read_I2C_Data(void)
+[v _Read_I2C_Data `(ui ~T0 @X0 1 ef ]
+"62
+[; ;I2C.c: 62: {
+{
+[e :U _Read_I2C_Data ]
+[f ]
+"63
+[; ;I2C.c: 63:     PIR1bits.SSPIF=0;
+[e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
+"64
+[; ;I2C.c: 64:     SSPCON2bits.RCEN=1;
+[e = . . _SSPCON2bits 0 3 -> -> 1 `i `uc ]
+"65
+[; ;I2C.c: 65:     while(!PIR1bits.SSPIF);
+[e $U 140  ]
+[e :U 141 ]
+[e :U 140 ]
+[e $ ! != -> . . _PIR1bits 0 3 `i -> 0 `i 141  ]
+[e :U 142 ]
+"66
+[; ;I2C.c: 66:     return (SSPBUF);
+[e ) -> _SSPBUF `ui ]
+[e $UE 139  ]
+"67
+[; ;I2C.c: 67: }
+[e :UE 139 ]
+}
+"80
+[; ;I2C.c: 80: void Send_I2C_ControlByte(unsigned int BlockAddress,unsigned int RW_bit)
+[v _Send_I2C_ControlByte `(v ~T0 @X0 1 ef2`ui`ui ]
+"81
+[; ;I2C.c: 81: {
+{
+[e :U _Send_I2C_ControlByte ]
+"80
+[; ;I2C.c: 80: void Send_I2C_ControlByte(unsigned int BlockAddress,unsigned int RW_bit)
+[v _BlockAddress `ui ~T0 @X0 1 r1 ]
+[v _RW_bit `ui ~T0 @X0 1 r2 ]
+"81
+[; ;I2C.c: 81: {
+[f ]
+"82
+[; ;I2C.c: 82:     PIR1bits.SSPIF=0;
+[e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
+"90
+[; ;I2C.c: 90:     SSPBUF = (((0b1010 << 4) | (BlockAddress <<1)) + RW_bit);
+[e = _SSPBUF -> + | -> << -> 10 `i -> 4 `i `ui << _BlockAddress -> 1 `i _RW_bit `uc ]
+"92
+[; ;I2C.c: 92:     while(!PIR1bits.SSPIF);
+[e $U 144  ]
+[e :U 145 ]
+[e :U 144 ]
+[e $ ! != -> . . _PIR1bits 0 3 `i -> 0 `i 145  ]
+[e :U 146 ]
+"93
+[; ;I2C.c: 93: }
+[e :UE 143 ]
+}
+"98
+[; ;I2C.c: 98: void Send_I2C_StartBit(void)
+[v _Send_I2C_StartBit `(v ~T0 @X0 1 ef ]
+"99
+[; ;I2C.c: 99: {
+{
+[e :U _Send_I2C_StartBit ]
+[f ]
+"100
+[; ;I2C.c: 100:     PIR1bits.SSPIF=0;
+[e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
+"101
+[; ;I2C.c: 101:     SSPCON2bits.SEN=1;
+[e = . . _SSPCON2bits 0 0 -> -> 1 `i `uc ]
+"102
+[; ;I2C.c: 102:     while(!PIR1bits.SSPIF);
+[e $U 148  ]
+[e :U 149 ]
+[e :U 148 ]
+[e $ ! != -> . . _PIR1bits 0 3 `i -> 0 `i 149  ]
+[e :U 150 ]
+"103
+[; ;I2C.c: 103: }
+[e :UE 147 ]
+}
+"108
+[; ;I2C.c: 108: void Send_I2C_StopBit(void)
+[v _Send_I2C_StopBit `(v ~T0 @X0 1 ef ]
+"109
+[; ;I2C.c: 109: {
+{
+[e :U _Send_I2C_StopBit ]
+[f ]
+"110
+[; ;I2C.c: 110:     PIR1bits.SSPIF=0;
+[e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
+"111
+[; ;I2C.c: 111:     SSPCON2bits.PEN=1;
+[e = . . _SSPCON2bits 0 2 -> -> 1 `i `uc ]
+"112
+[; ;I2C.c: 112:     while(!PIR1bits.SSPIF);
+[e $U 152  ]
+[e :U 153 ]
+[e :U 152 ]
+[e $ ! != -> . . _PIR1bits 0 3 `i -> 0 `i 153  ]
+[e :U 154 ]
+"113
+[; ;I2C.c: 113: }
+[e :UE 151 ]
+}
+"119
+[; ;I2C.c: 119: void Send_I2C_ACK(void)
+[v _Send_I2C_ACK `(v ~T0 @X0 1 ef ]
+"120
+[; ;I2C.c: 120: {
+{
+[e :U _Send_I2C_ACK ]
+[f ]
+"121
+[; ;I2C.c: 121:    PIR1bits.SSPIF=0;
+[e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
+"122
+[; ;I2C.c: 122:    SSPCON2bits.ACKDT=0;
+[e = . . _SSPCON2bits 0 5 -> -> 0 `i `uc ]
+"123
+[; ;I2C.c: 123:    SSPCON2bits.ACKEN=1;
+[e = . . _SSPCON2bits 0 4 -> -> 1 `i `uc ]
+"124
+[; ;I2C.c: 124:    while(!PIR1bits.SSPIF);
+[e $U 156  ]
+[e :U 157 ]
+[e :U 156 ]
+[e $ ! != -> . . _PIR1bits 0 3 `i -> 0 `i 157  ]
+[e :U 158 ]
+"125
+[; ;I2C.c: 125: }
+[e :UE 155 ]
+}
+"130
+[; ;I2C.c: 130: void Send_I2C_NAK(void)
+[v _Send_I2C_NAK `(v ~T0 @X0 1 ef ]
+"131
+[; ;I2C.c: 131: {
+{
+[e :U _Send_I2C_NAK ]
+[f ]
+"132
+[; ;I2C.c: 132:     PIR1bits.SSPIF=0;
+[e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
+"133
+[; ;I2C.c: 133:     SSPCON2bits.ACKDT=1;
+[e = . . _SSPCON2bits 0 5 -> -> 1 `i `uc ]
+"134
+[; ;I2C.c: 134:     SSPCON2bits.ACKEN=1;
+[e = . . _SSPCON2bits 0 4 -> -> 1 `i `uc ]
+"135
+[; ;I2C.c: 135:     while(!PIR1bits.SSPIF);
+[e $U 160  ]
+[e :U 161 ]
+[e :U 160 ]
+[e $ ! != -> . . _PIR1bits 0 3 `i -> 0 `i 161  ]
+[e :U 162 ]
+"136
+[; ;I2C.c: 136: }
+[e :UE 159 ]
+}

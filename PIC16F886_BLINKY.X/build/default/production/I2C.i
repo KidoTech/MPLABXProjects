@@ -1,4 +1,4 @@
-# 1 "main.c"
+# 1 "I2C.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,17 +6,19 @@
 # 1 "<built-in>" 2
 # 1 "/Applications/microchip/mplabx/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8/pic/include/language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "main.c" 2
-
-
-
-
-
-
-
-
-# 1 "./oled.h" 1
-# 49 "./oled.h"
+# 1 "I2C.c" 2
+# 16 "I2C.c"
+# 1 "./I2C.h" 1
+# 20 "./I2C.h"
+void I2C_Init(void);
+void Send_I2C_Data(unsigned char databyte);
+unsigned int Read_I2C_Data(void);
+void Send_I2C_ControlByte(unsigned int BlockAddress,unsigned int RW_bit);
+void Send_I2C_StartBit(void);
+void Send_I2C_StopBit(void);
+void Send_I2C_ACK(void);
+void Send_I2C_NAK(void);
+# 17 "I2C.c" 2
 # 1 "/Applications/microchip/mplabx/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8/pic/include/xc.h" 1 3
 # 18 "/Applications/microchip/mplabx/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8/pic/include/xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -2377,205 +2379,102 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 28 "/Applications/microchip/mplabx/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8/pic/include/xc.h" 2 3
-# 50 "./oled.h" 2
+# 18 "I2C.c" 2
 
-# 1 "/Applications/microchip/xc8/v2.32/pic/include/c90/stdbool.h" 1 3
-# 52 "./oled.h" 2
-# 1 "/Applications/microchip/xc8/v2.32/pic/include/c90/stdint.h" 1 3
-# 13 "/Applications/microchip/xc8/v2.32/pic/include/c90/stdint.h" 3
-typedef signed char int8_t;
 
 
+void I2C_Init(void){
 
 
 
 
-typedef signed int int16_t;
 
+    SSPCONbits.SSPM=0x08;
+    SSPCONbits.SSPEN=1;
+# 40 "I2C.c"
+    SSPADD = 19;
 
 
-
-
-
-
-typedef __int24 int24_t;
-
-
-
-
-
-
-
-typedef signed long int int32_t;
-# 52 "/Applications/microchip/xc8/v2.32/pic/include/c90/stdint.h" 3
-typedef unsigned char uint8_t;
-
-
-
-
-
-typedef unsigned int uint16_t;
-
-
-
-
-
-
-typedef __uint24 uint24_t;
-
-
-
-
-
-
-typedef unsigned long int uint32_t;
-# 88 "/Applications/microchip/xc8/v2.32/pic/include/c90/stdint.h" 3
-typedef signed char int_least8_t;
-
-
-
-
-
-
-
-typedef signed int int_least16_t;
-# 109 "/Applications/microchip/xc8/v2.32/pic/include/c90/stdint.h" 3
-typedef __int24 int_least24_t;
-# 118 "/Applications/microchip/xc8/v2.32/pic/include/c90/stdint.h" 3
-typedef signed long int int_least32_t;
-# 136 "/Applications/microchip/xc8/v2.32/pic/include/c90/stdint.h" 3
-typedef unsigned char uint_least8_t;
-
-
-
-
-
-
-typedef unsigned int uint_least16_t;
-# 154 "/Applications/microchip/xc8/v2.32/pic/include/c90/stdint.h" 3
-typedef __uint24 uint_least24_t;
-
-
-
-
-
-
-
-typedef unsigned long int uint_least32_t;
-# 181 "/Applications/microchip/xc8/v2.32/pic/include/c90/stdint.h" 3
-typedef signed char int_fast8_t;
-
-
-
-
-
-
-typedef signed int int_fast16_t;
-# 200 "/Applications/microchip/xc8/v2.32/pic/include/c90/stdint.h" 3
-typedef __int24 int_fast24_t;
-
-
-
-
-
-
-
-typedef signed long int int_fast32_t;
-# 224 "/Applications/microchip/xc8/v2.32/pic/include/c90/stdint.h" 3
-typedef unsigned char uint_fast8_t;
-
-
-
-
-
-typedef unsigned int uint_fast16_t;
-# 240 "/Applications/microchip/xc8/v2.32/pic/include/c90/stdint.h" 3
-typedef __uint24 uint_fast24_t;
-
-
-
-
-
-
-typedef unsigned long int uint_fast32_t;
-# 268 "/Applications/microchip/xc8/v2.32/pic/include/c90/stdint.h" 3
-typedef int32_t intmax_t;
-# 282 "/Applications/microchip/xc8/v2.32/pic/include/c90/stdint.h" 3
-typedef uint32_t uintmax_t;
-
-
-
-
-
-
-typedef int16_t intptr_t;
-
-
-
-
-typedef uint16_t uintptr_t;
-# 53 "./oled.h" 2
-
-
-void OLED_Command( uint8_t temp);
-void OLED_Data( uint8_t temp);
-void OLED_Init();
-void OLED_YX(unsigned char Row, unsigned char Column);
-void OLED_PutChar( char ch );
-void OLED_Clear();
-void OLED_Write_String( char *s );
-void OLED_Write_Integer(uint8_t i);
-void OLED_Write_Float(float f);
-# 10 "main.c" 2
-# 1 "./I2C.h" 1
-# 20 "./I2C.h"
-void I2C_Init(void);
-void Send_I2C_Data(unsigned char databyte);
-unsigned int Read_I2C_Data(void);
-void Send_I2C_ControlByte(unsigned int BlockAddress,unsigned int RW_bit);
-void Send_I2C_StartBit(void);
-void Send_I2C_StopBit(void);
-void Send_I2C_ACK(void);
-void Send_I2C_NAK(void);
-# 11 "main.c" 2
-
-
-# 1 "/Applications/microchip/xc8/v2.32/pic/include/c90/stdbool.h" 1 3
-# 14 "main.c" 2
-# 1 "/Applications/microchip/xc8/v2.32/pic/include/c90/stdint.h" 1 3
-# 15 "main.c" 2
-
-
-#pragma config FOSC = INTRC_NOCLKOUT
-#pragma config WDTE = OFF
-#pragma config PWRTE = OFF
-#pragma config MCLRE = ON
-#pragma config CP = OFF
-#pragma config CPD = OFF
-#pragma config BOREN = ON
-#pragma config IESO = ON
-#pragma config FCMEN = ON
-#pragma config LVP = OFF
-
-
-#pragma config BOR4V = BOR40V
-#pragma config WRT = OFF
-
-
-
-
-
-
-void delay(void) {
-
-    unsigned int i;
-
-    for (i=0; i<=30000; i++);
+    _delay((unsigned long)((10)*(8000000/4000.0)));
 }
 
 
-void main(void) {
-# 67 "main.c"
-    I2C_Init();
-    return;
+
+
+
+void Send_I2C_Data(unsigned char databyte)
+{
+    PIR1bits.SSPIF=0;
+    SSPBUF = databyte;
+    while(!PIR1bits.SSPIF);
+}
+
+
+
+
+
+unsigned int Read_I2C_Data(void)
+{
+    PIR1bits.SSPIF=0;
+    SSPCON2bits.RCEN=1;
+    while(!PIR1bits.SSPIF);
+    return (SSPBUF);
+}
+# 80 "I2C.c"
+void Send_I2C_ControlByte(unsigned int BlockAddress,unsigned int RW_bit)
+{
+    PIR1bits.SSPIF=0;
+
+
+
+
+
+
+
+    SSPBUF = (((0b1010 << 4) | (BlockAddress <<1)) + RW_bit);
+
+    while(!PIR1bits.SSPIF);
+}
+
+
+
+
+void Send_I2C_StartBit(void)
+{
+    PIR1bits.SSPIF=0;
+    SSPCON2bits.SEN=1;
+    while(!PIR1bits.SSPIF);
+}
+
+
+
+
+void Send_I2C_StopBit(void)
+{
+    PIR1bits.SSPIF=0;
+    SSPCON2bits.PEN=1;
+    while(!PIR1bits.SSPIF);
+}
+
+
+
+
+
+void Send_I2C_ACK(void)
+{
+   PIR1bits.SSPIF=0;
+   SSPCON2bits.ACKDT=0;
+   SSPCON2bits.ACKEN=1;
+   while(!PIR1bits.SSPIF);
+}
+
+
+
+
+void Send_I2C_NAK(void)
+{
+    PIR1bits.SSPIF=0;
+    SSPCON2bits.ACKDT=1;
+    SSPCON2bits.ACKEN=1;
+    while(!PIR1bits.SSPIF);
 }

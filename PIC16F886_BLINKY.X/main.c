@@ -6,8 +6,12 @@
  */
 
 
+#include "oled.h"
+#include "I2C.h"
 #include <xc.h>
 #include <PIC16F886.h>
+#include <stdbool.h>
+#include <stdint.h>
 #define _XTAL_FREQ 8000000
 // CONFIG1
 #pragma config FOSC = INTRC_NOCLKOUT// Oscillator Selection bits (INTOSCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, I/O function on RA7/OSC1/CLKIN)
@@ -25,6 +29,11 @@
 #pragma config BOR4V = BOR40V   // Brown-out Reset Selection bit (Brown-out Reset set to 4.0V)
 #pragma config WRT = OFF        // Flash Program Memory Self Write Enable bits (Write protection off)
 
+#define I2C_SCL         PORTCbits.RC3       // I2C SCL 
+#define I2C_SCL_TRIS    TRISCbits.TRISC3    // I2C SCL tri-state buffer
+#define I2C_SDA         PORTCbits.RC4       // I2C SDA 
+#define I2C_SDA_TRIS    TRISCbits.TRISC4    // I2C SDA tri-state buffer
+
 void delay(void) {
     
     unsigned int i;
@@ -35,7 +44,9 @@ void delay(void) {
 
 void main(void) {
 
+    /*
     unsigned char buff;
+   
     
     buff = 0x01;
     OSCCON = 0x71;
@@ -43,7 +54,7 @@ void main(void) {
     PORTB = buff;
     while (1) {
         //delay();
-        __delay_ms(100);
+        __delay_ms(1000);
         if (buff == 0x08) {
             buff = 0x01;
         }
@@ -52,6 +63,7 @@ void main(void) {
         }
         PORTB = buff;
     }
-      
+      */
+    I2C_Init();
     return;
 }

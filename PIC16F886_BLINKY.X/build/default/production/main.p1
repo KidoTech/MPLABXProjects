@@ -1,15 +1,8 @@
 Version 4.0 HI-TECH Software Intermediate Code
 [p mainexit ]
-"1704 /Applications/microchip/mplabx/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8/pic/include/proc/PIC16F886.h
-[v _OSCCON `Vuc ~T0 @X0 0 e@143 ]
-"1399
-[v _TRISB `Vuc ~T0 @X0 0 e@134 ]
-"228
-[v _PORTB `Vuc ~T0 @X0 0 e@6 ]
-[v F1196 `(v ~T0 @X0 1 tf1`ul ]
-"92 /Applications/microchip/mplabx/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8/pic/include/pic.h
-[v __delay `JF1196 ~T0 @X0 0 e ]
-[p i __delay ]
+"20 ./I2C.h
+[; ;./I2C.h: 20: void I2C_Init(void);
+[v _I2C_Init `(v ~T0 @X0 0 ef ]
 "54 /Applications/microchip/mplabx/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8/pic/include/proc/PIC16F886.h
 [; <" INDF equ 00h ;# ">
 "61
@@ -162,51 +155,38 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; <" EECON1 equ 018Ch ;# ">
 "3370
 [; <" EECON2 equ 018Dh ;# ">
-"13 main.c
-[; ;main.c: 13:     OSCCON = 0x71;
+"17 main.c
 [p x FOSC  =  INTRC_NOCLKOUT ]
-"14
-[; ;main.c: 14:     TRISB = 0x00;
-[p x WDTE  =  OFF        ]
-"15
-[; ;main.c: 15:     PORTB = buff;
-[p x PWRTE  =  OFF       ]
-"16
-[; ;main.c: 16:     while (1) {
-[p x MCLRE  =  ON        ]
-"17
-[; ;main.c: 17: 
-[p x CP  =  OFF          ]
 "18
-[; ;main.c: 18:         _delay((unsigned long)((100)*(8000000/4000.0)));
-[p x CPD  =  OFF         ]
+[p x WDTE  =  OFF        ]
 "19
-[; ;main.c: 19:         if (buff == 0x08) {
-[p x BOREN  =  ON        ]
+[p x PWRTE  =  OFF       ]
 "20
-[; ;main.c: 20:             buff = 0x01;
-[p x IESO  =  ON         ]
+[p x MCLRE  =  ON        ]
 "21
-[; ;main.c: 21:         }
-[p x FCMEN  =  ON        ]
+[p x CP  =  OFF          ]
 "22
-[; ;main.c: 22:         else {
-[p x LVP  =  OFF         ]
+[p x CPD  =  OFF         ]
+"23
+[p x BOREN  =  ON        ]
+"24
+[p x IESO  =  ON         ]
 "25
-[; ;main.c: 25:         PORTB = buff;
-[p x BOR4V  =  BOR40V    ]
+[p x FCMEN  =  ON        ]
 "26
-[; ;main.c: 26:     }
+[p x LVP  =  OFF         ]
+"29
+[p x BOR4V  =  BOR40V    ]
+"30
 [p x WRT  =  OFF         ]
-"28
-[; ;main.c: 28:     return;
+"37
 [v _delay `(v ~T0 @X0 1 ef ]
 {
 [e :U _delay ]
 [f ]
-"30
+"39
 [v _i `ui ~T0 @X0 1 a ]
-"32
+"41
 {
 [e = _i -> -> 0 `i `ui ]
 [e $ <= _i -> -> 30000 `i `ui 135  ]
@@ -216,55 +196,22 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ <= _i -> -> 30000 `i `ui 135  ]
 [e :U 136 ]
 }
-"33
+"42
 [e :UE 134 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"36
+"45
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"38
-[v _buff `uc ~T0 @X0 1 a ]
-"40
-[e = _buff -> -> 1 `i `uc ]
-"41
-[e = _OSCCON -> -> 113 `i `uc ]
-"42
-[e = _TRISB -> -> 0 `i `uc ]
-"43
-[e = _PORTB _buff ]
-"44
-[e :U 140 ]
-{
-"46
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"47
-[e $ ! == -> _buff `i -> 8 `i 142  ]
-{
-"48
-[e = _buff -> -> 1 `i `uc ]
-"49
-}
-[e $U 143  ]
-"50
-[e :U 142 ]
-{
-"51
-[e = _buff -> << -> _buff `i -> 1 `i `uc ]
-"52
-}
-[e :U 143 ]
-"53
-[e = _PORTB _buff ]
-"54
-}
-[e :U 139 ]
-[e $U 140  ]
-[e :U 141 ]
-"56
+"67
+[; ;main.c: 67:     I2C_Init();
+[e ( _I2C_Init ..  ]
+"68
+[; ;main.c: 68:     return;
 [e $UE 138  ]
-"57
+"69
+[; ;main.c: 69: }
 [e :UE 138 ]
 }
