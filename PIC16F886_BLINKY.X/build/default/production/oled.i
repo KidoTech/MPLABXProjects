@@ -2794,7 +2794,7 @@ void OLED_Write_Float(float f)
     char* buf11;
     int status;
 
-    buf11 = ftoa(f, &status);
+
 
     OLED_Write_String(buf11);
     OLED_Write_String( "     " );

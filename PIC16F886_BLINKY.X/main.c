@@ -12,6 +12,7 @@
 #include <PIC16F886.h>
 #include <stdbool.h>
 #include <stdint.h>
+
 #define _XTAL_FREQ 8000000
 // CONFIG1
 #pragma config FOSC = INTRC_NOCLKOUT// Oscillator Selection bits (INTOSCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, I/O function on RA7/OSC1/CLKIN)
@@ -34,36 +35,12 @@
 #define I2C_SDA         PORTCbits.RC4       // I2C SDA 
 #define I2C_SDA_TRIS    TRISCbits.TRISC4    // I2C SDA tri-state buffer
 
-void delay(void) {
-    
-    unsigned int i;
-    
-    for (i=0; i<=30000; i++);
-}
-
+void Setup(void);
+void DisplayData(void);
 
 void main(void) {
 
-    /*
-    unsigned char buff;
-   
-    
-    buff = 0x01;
-    OSCCON = 0x71;
-    TRISB = 0x00;
-    PORTB = buff;
-    while (1) {
-        //delay();
-        __delay_ms(1000);
-        if (buff == 0x08) {
-            buff = 0x01;
-        }
-        else {
-            buff = buff << 1;
-        }
-        PORTB = buff;
-    }
-      */
+ 
     I2C_Init();
     return;
 }

@@ -14,9 +14,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "306 oled.c
 [; ;oled.c: 306:      itoa( s, i, 10 );
 [v _itoa `(i ~T0 @X0 0 e? ]
-"325
-[; ;oled.c: 325:     buf11 = ftoa(f, &status);
-[v _ftoa `(i ~T0 @X0 0 e? ]
 "54 /Applications/microchip/mplabx/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8/pic/include/proc/PIC16F886.h
 [; <" INDF equ 00h ;# ">
 "61
@@ -1498,9 +1495,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "323
 [; ;oled.c: 323:     int status;
 [v _status `i ~T0 @X0 1 a ]
-"325
-[; ;oled.c: 325:     buf11 = ftoa(f, &status);
-[e = _buf11 -> ( _ftoa , -> _f `d &U _status `*uc ]
 "327
 [; ;oled.c: 327:     OLED_Write_String(buf11);
 [e ( _OLED_Write_String (1 _buf11 ]

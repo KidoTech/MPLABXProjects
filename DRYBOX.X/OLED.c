@@ -1,20 +1,15 @@
 /*
-* Project Name: OLED_I2C
-* File: OLED.c
-* Description: OLED 128X32 SSD1306  I2C library c file
-* Author: Gavin Lyons.
-* Complier: xc8 v2.00 compiler
-* PIC: PIC16F1619 
-* IDE:  MPLAB X v5.00
-* Development board: Microchip Curiosity Board, PIC16F1619
-* Created March 2019
-* Description: See URL for full details.
-* URL: https://github.com/gavinlyonsrepo/pic_16F1619_projects
-*/
+ * File:   OLED.c
+ * Author: alanlow
+ *
+ * Created on May 23, 2021, 4:42 PM
+ */
 
-#include "I2C.h"
+
+#include <xc.h>
 #include "OLED.h"         
-#include "font.h"
+#include "FONT.h"
+#include "I2C.h"
 
 //Function to Send command byte to OLED, passed byte
 void Oled_Command( uint8_t command )
@@ -24,8 +19,10 @@ void Oled_Command( uint8_t command )
   data_I2C[0] = SSD1306_COMMAND ; 
   data_I2C[1] = command; 
 
+ I2C_Master_Start();  //Start condition
+ I2C_Master_Write(SSD1306_ADDR);     //7 bit address + Write
  
-  i2c_writeNBytes(SSD1306_ADDR, data_I2C, 2);
+  //i2c_writeNBytes(SSD1306_ADDR, data_I2C, 2);
  
 }
 
