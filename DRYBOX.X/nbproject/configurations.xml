@@ -5,8 +5,7 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>I2C.h</itemPath>
-      <itemPath>FONT.h</itemPath>
-      <itemPath>OLED.h</itemPath>
+      <itemPath>SSD1306.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -17,7 +16,6 @@
                    projectFiles="true">
       <itemPath>MAIN.c</itemPath>
       <itemPath>I2C.c</itemPath>
-      <itemPath>OLED.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

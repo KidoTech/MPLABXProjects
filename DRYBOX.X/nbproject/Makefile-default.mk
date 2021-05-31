@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=MAIN.c I2C.c OLED.c
+SOURCEFILES_QUOTED_IF_SPACED=MAIN.c I2C.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/MAIN.p1 ${OBJECTDIR}/I2C.p1 ${OBJECTDIR}/OLED.p1
-POSSIBLE_DEPFILES=${OBJECTDIR}/MAIN.p1.d ${OBJECTDIR}/I2C.p1.d ${OBJECTDIR}/OLED.p1.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/MAIN.p1 ${OBJECTDIR}/I2C.p1
+POSSIBLE_DEPFILES=${OBJECTDIR}/MAIN.p1.d ${OBJECTDIR}/I2C.p1.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/MAIN.p1 ${OBJECTDIR}/I2C.p1 ${OBJECTDIR}/OLED.p1
+OBJECTFILES=${OBJECTDIR}/MAIN.p1 ${OBJECTDIR}/I2C.p1
 
 # Source Files
-SOURCEFILES=MAIN.c I2C.c OLED.c
+SOURCEFILES=MAIN.c I2C.c
 
 
 
@@ -110,14 +110,6 @@ ${OBJECTDIR}/I2C.p1: I2C.c  nbproject/Makefile-${CND_CONF}.mk
 	@-${MV} ${OBJECTDIR}/I2C.d ${OBJECTDIR}/I2C.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/I2C.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/OLED.p1: OLED.c  nbproject/Makefile-${CND_CONF}.mk 
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/OLED.p1.d 
-	@${RM} ${OBJECTDIR}/OLED.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/OLED.p1 OLED.c 
-	@-${MV} ${OBJECTDIR}/OLED.d ${OBJECTDIR}/OLED.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/OLED.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
 else
 ${OBJECTDIR}/MAIN.p1: MAIN.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}" 
@@ -134,14 +126,6 @@ ${OBJECTDIR}/I2C.p1: I2C.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/I2C.p1 I2C.c 
 	@-${MV} ${OBJECTDIR}/I2C.d ${OBJECTDIR}/I2C.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/I2C.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
-${OBJECTDIR}/OLED.p1: OLED.c  nbproject/Makefile-${CND_CONF}.mk 
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/OLED.p1.d 
-	@${RM} ${OBJECTDIR}/OLED.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/OLED.p1 OLED.c 
-	@-${MV} ${OBJECTDIR}/OLED.d ${OBJECTDIR}/OLED.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/OLED.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 endif
 

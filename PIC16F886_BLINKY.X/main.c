@@ -33,7 +33,7 @@
 #define I2C_SCL         PORTCbits.RC3       // I2C SCL 
 #define I2C_SCL_TRIS    TRISCbits.TRISC3    // I2C SCL tri-state buffer
 #define I2C_SDA         PORTCbits.RC4       // I2C SDA 
-#define I2C_SDA_TRIS    TRISCbits.TRISC4    // I2C SDA tri-state buffer
+#define I2C_SDA_TRIS    TRISbits.TRISC4    // I2C SDA tri-state buffer
 
 void Setup(void);
 void DisplayData(void);

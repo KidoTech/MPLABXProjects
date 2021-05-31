@@ -1,20 +1,20 @@
 /*
  * File:   MAIN.c
  * Author: alanlow
- *
+ * Reference: https://github.com/kiwih/pic16f877a-ssd1306-oled
  * Created on May 23, 2021, 7:03 AM
  */
 
-
+//#define SSD1306_128_64
 #include "I2C.h"
-#include "FONT.h"
+#include "SSD1306.h"
 #include <xc.h>
 #include <PIC16F886.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdint.h>
 
-#define _XTAL_FREQ 8000000
+//#define _XTAL_FREQ 8000000
 // CONFIG1
 #pragma config FOSC = INTRC_NOCLKOUT// Oscillator Selection bits (INTOSCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, I/O function on RA7/OSC1/CLKIN)
 #pragma config WDTE = OFF       // Watchdog Timer Enable bit (WDT disabled and can be enabled by SWDTEN bit of the WDTCON register)
@@ -31,29 +31,26 @@
 #pragma config BOR4V = BOR40V   // Brown-out Reset Selection bit (Brown-out Reset set to 4.0V)
 #pragma config WRT = OFF        // Flash Program Memory Self Write Enable bits (Write protection off)
 
-#define I2C_SCL         PORTCbits.RC3       // I2C SCL 
-#define I2C_SCL_TRIS    TRISCbits.TRISC3    // I2C SCL tri-state buffer
-#define I2C_SDA         PORTCbits.RC4       // I2C SDA 
-#define I2C_SDA_TRIS    TRISCbits.TRISC4    // I2C SDA tri-state buffer
 
-volatile uint8_t timer0ReloadVal;
-void (*TMR0_InterruptHandler)(void);
-void Setup(void);
-void DisplayData(void);
-void TMR0_Initialize(void);
-uint8_t TMR0_ReadTimer(void);
-void TMR0_WriteTimer(uint8_t timerVal);
-void TMR0_Reload(void);
-void TMR0_ISR(void);
-void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
-void TMR0_DefaultInterruptHandler(void);
+#define DS1         PORTBbits.RB0       //Blinky
+#define DS1_TRIS   TRISBbits.TRISB0    //Blinky-Tri state buffer
 
+//void Setup(void);
 
-int counter = 0;
+void oled_puts(const char* c, uint8_t size) {
+    while(*c != '\0') {
+        SSD1306_PutStretchC(*c, size);
+        c++;
+    }
+}
 
-void main(void) {
-    Setup();
-    return;
+void toggle(void){
+    if (DS1 == 0){
+        DS1 = 1;
+    }
+    else {
+        DS1 = 0;
+    }
 }
 
 void Setup(void){
@@ -62,87 +59,38 @@ void Setup(void){
     OSCCON = 0x78;
     // TUN 0; 
     OSCTUNE = 0x00;
-    I2C_Master_Init(100000);      //Initialize I2C Master with 100KHz clock
-    TMR0_Initialize();
- 
-}
-
-void DisplayData(void){
     
-}
-
-void TMR0_Initialize(void)
-{
-    // Set TMR0 to the options selected in the User Interface
-	
-    // PSA assigned; PS 1:256; TMRSE Increment_hi_lo; mask the nWPUEN and INTEDG bits
-    OPTION_REG = (uint8_t)((OPTION_REG & 0xC0) | (0xD7 & 0x3F)); 
-	
-    // TMR0 178; 
-    TMR0 = 0xB2;
-	
-    // Load the TMR value to reload variable
-    timer0ReloadVal= 178;
-
-    // Clear Interrupt flag before enabling the interrupt
-    INTCONbits.TMR0IF = 0;
-
-    // Enabling TMR0 interrupt
-    INTCONbits.TMR0IE = 1;
-
-    // Set Default Interrupt Handler
-    TMR0_SetInterruptHandler(TMR0_DefaultInterruptHandler);
-}
-
-uint8_t TMR0_ReadTimer(void)
-{
-    uint8_t readVal;
-
-    readVal = TMR0;
-
-    return readVal;
-}
-
-void TMR0_WriteTimer(uint8_t timerVal)
-{
-    // Write to the Timer0 register
-    TMR0 = timerVal;
-}
-
-void TMR0_Reload(void)
-{
-    // Write to the Timer0 register
-    TMR0 = timer0ReloadVal;
-}
-
-void TMR0_ISR(void)
-{
-
-    // Clear the TMR0 interrupt flag
-    INTCONbits.TMR0IF = 0;
-
-    TMR0 = timer0ReloadVal;
-
-    if(TMR0_InterruptHandler)
-    {
-        TMR0_InterruptHandler();
+    __delay_ms(1000);
+    I2C_Initialize(2000);      //Initialize I2C Master with 100KHz clock
+    // clear the display
+    SSD1306_ClearDisplay();
+    DS1_TRIS = 0;
+    DS1 = 0;
+    while(1) {
+        DS1 = 0;
+        SSD1306_GotoXY(1,1);
+        oled_puts("I wanna be", 1);
+        SSD1306_GotoXY(1,2);
+        oled_puts("the", 2);
+        SSD1306_GotoXY(5,2);
+        oled_puts("very", 3);
+        SSD1306_GotoXY(2,5);
+        oled_puts("BEST", 4);
+        __delay_ms(1000);
+        //SSD1306_ClearDisplay();
+        //toggle();
+        DS1 = 1;
+        __delay_ms(1000);
+        
+        
     }
-
-    // add your TMR0 interrupt custom code
-     // ---------- Glyons ------------
-        counter++;
-        if(counter==120)
-        { 
-          counter=0;
-         //LED_STATUS_Toggle();
-        } 
+    
+    return;
 }
 
-void TMR0_SetInterruptHandler(void (* InterruptHandler)(void)){
-    TMR0_InterruptHandler = InterruptHandler;
-}
 
-void TMR0_DefaultInterruptHandler(void){
-    // add your TMR0 interrupt custom code
-    // or set custom function using TMR0_SetInterruptHandler()
+void main(void) {
+    Setup();
+    SSD1306_Init(SSD1306_SWITCHCAPVCC, SSD1306_I2C_ADDRESS);
+    return;
 }

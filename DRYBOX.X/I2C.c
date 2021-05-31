@@ -7,57 +7,54 @@
 
 
 #include <xc.h>
+#include "I2C.h"
 #include <PIC16F886.h>
-#define _XTAL_FREQ 8000000
 
-void I2C_Master_Init(const unsigned long c);
-void I2C_Master_Wait(void);
-void I2C_Master_Start(void);
-void I2C_Master_Stop(void);
-void I2C_Master_Write(unsigned d);
-unsigned short I2C_Master_Read(unsigned short a);
+void I2C_Initialize(const unsigned long feq_K) //Begin IIC as master
+{
+  TRISC3 = 1;  TRISC4 = 1;  //Set SDA and SCL pins as input pins
 
-void I2C_Master_Init(const unsigned long c) {
-  SSPCON = 0x28;            //SSP Module as Master
-  SSPCON2 = 0;
-  SSPADD = (_XTAL_FREQ/(4*c))-1;
-  SSPSTAT = 0;
-  TRISCbits.TRISC3 = 1;
-  TRISCbits.TRISC4 = 1;
+  SSPCON  = 0b00101000;    //pg84/234
+  SSPCON2 = 0b00000000;    //pg85/234
+
+  SSPADD = (_XTAL_FREQ/(4*feq_K*100))-1; //Setting Clock Speed pg99/234
+  SSPSTAT = 0b00000000;    //pg83/234
 }
 
-void I2C_Master_Wait(void)
+void I2C_Hold()
 {
-  while ((SSPSTAT & 0x04) || (SSPCON2 & 0x1F));
+    while (   (SSPCON2 & 0b00011111)    ||    (SSPSTAT & 0b00000100)   ) ; //check the this on registers to make sure the IIC is not in progress
 }
 
-void I2C_Master_Start(void)
+void I2C_Begin()
 {
-  I2C_Master_Wait();
-  SEN = 1;
+  I2C_Hold();  //Hold the program is I2C is busy 
+  SEN = 1;     //Begin IIC pg85/234
+}
+void I2C_End()
+{
+  I2C_Hold(); //Hold the program is I2C is busy 
+  PEN = 1;    //End IIC pg85/234
 }
 
-void I2C_Master_Stop(void)
+void I2C_Write(unsigned data)
 {
-  I2C_Master_Wait();
-  PEN = 1;
+  I2C_Hold(); //Hold the program is I2C is busy
+  SSPBUF = data;         //pg82/234
 }
 
-void I2C_Master_Write(unsigned d)
+unsigned short I2C_Read(unsigned short ack)
 {
-  I2C_Master_Wait();
-  SSPBUF = d;
-}
-
-unsigned short I2C_Master_Read(unsigned short a)
-{
-  unsigned short temp;
-  I2C_Master_Wait();
+  unsigned short incoming;
+  I2C_Hold();
   RCEN = 1;
-  I2C_Master_Wait();
-  temp = SSPBUF;
-  I2C_Master_Wait();
-  ACKDT = (a)?0:1;
-  ACKEN = 1;
-  return temp;
+
+  I2C_Hold();
+  incoming = SSPBUF;      //get the data saved in SSPBUF
+
+  I2C_Hold();
+  ACKDT = (ack)?0:1;    //check if ack bit received 
+  ACKEN = 1;          //pg 85/234
+
+  return incoming;
 }
