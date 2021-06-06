@@ -25,7 +25,7 @@ void I2C_Begin(void);
 void I2C_End(void);
 
 void I2C_Write(unsigned data);
-unsigned short I2C_Read(unsigned short ack);    
+unsigned char I2C_Read(unsigned char ack);    
 
 
 #ifdef	__cplusplus

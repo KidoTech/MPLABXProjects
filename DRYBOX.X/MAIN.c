@@ -8,6 +8,7 @@
 #define SSD1306_128_64
 #include "I2C.h"
 #include "SSD1306.h"
+#include "AHT10.h"
 #include <xc.h>
 #include <PIC16F886.h>
 #include <stdbool.h>
@@ -63,43 +64,54 @@ void Setup(void){
     __delay_ms(1000);
     I2C_Initialize(100);      //Initialize I2C Master with 100KHz clock
     // clear the display
+    AHT10_INIT();
     SSD1306_Init(SSD1306_SWITCHCAPVCC, SSD1306_I2C_ADDRESS);
-    SSD1306_ClearDisplay();
+    __delay_ms(500);
     DS1_TRIS = 0;
     DS1 = 0;
-    while(1) {
-        DS1 = 0;
-        SSD1306_GotoXY(1,1);
-        oled_puts("Our name are: ", 1);
-        SSD1306_GotoXY(5,3);
-        oled_puts("Low Si Hui", 1);
-        SSD1306_GotoXY(10,5);
-        oled_puts("&", 1);
-        SSD1306_GotoXY(5,7);
-        oled_puts("Low Si En", 1);
-        //SSD1306_GotoXY(1,1);
-        //oled_puts("I wanna be", 1);
-        //SSD1306_GotoXY(1,2);
-        //oled_puts("the", 2);
-        //SSD1306_GotoXY(5,2);
-        //oled_puts("very", 3);
-        //SSD1306_GotoXY(2,5);
-        //oled_puts("BEST", 4);
-        __delay_ms(2000);
-        
-        //toggle();
-        DS1 = 1;
-        __delay_ms(2000);
-        SSD1306_ClearDisplay();
-        
-    }
     
     return;
 }
 
 
 void main(void) {
+    
+        unsigned char *p;
+    
     Setup();
-    SSD1306_Init(SSD1306_SWITCHCAPVCC, SSD1306_I2C_ADDRESS);
+    SSD1306_ClearDisplay();
+    
+    while(1) {
+        
+        DS1 = 0;
+        AHT10_MEASURE();
+        __delay_ms(100);
+        p = AHT10_READ();
+        /*
+        SSD1306_GotoXY(1,1);
+        oled_puts("Our name is: ", 1);
+        SSD1306_GotoXY(5,2);
+        oled_puts("Low Si Hui,", 1);
+        SSD1306_GotoXY(5,3);
+        oled_puts("Low Si En, ", 1);
+        SSD1306_GotoXY(5,4);
+        oled_puts("Yong Mei Leng, ", 1);
+        SSD1306_GotoXY(10,5);
+        oled_puts("&", 1);
+        SSD1306_GotoXY(5,6);
+        oled_puts("Low Yong Siah, ", 1);
+        */
+        SSD1306_GotoXY(1,1);
+        oled_puts("The pressure is: ", 1);
+        SSD1306_GotoXY(1,2);
+        oled_puts(*(p+2),1);
+        __delay_ms(1000);
+        
+        //toggle();
+        DS1 = 1;
+        __delay_ms(1000);
+        SSD1306_ClearDisplay();
+    }
+    
     return;
 }

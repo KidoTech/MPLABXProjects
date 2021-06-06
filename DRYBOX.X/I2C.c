@@ -44,9 +44,10 @@ void I2C_Write(unsigned data)
   SSPBUF = data;         //pg82/234
 }
 
-unsigned short I2C_Read(unsigned short ack)
+//unsigned short I2C_Read(unsigned short ack)
+unsigned char I2C_Read(unsigned char ack)
 {
-  unsigned short incoming;
+  unsigned char incoming;
   I2C_Hold();
   RCEN = 1;
 
