@@ -17,7 +17,8 @@ void I2C_Initialize(const unsigned long feq_K) //Begin IIC as master
   SSPCON  = 0b00101000;    //pg84/234
   SSPCON2 = 0b00000000;    //pg85/234
 
-  SSPADD = (_XTAL_FREQ/(4*feq_K*100))-1; //Setting Clock Speed pg99/234
+  //SSPADD = (_XTAL_FREQ/(4*feq_K*100))-1; //Setting Clock Speed pg99/234
+  SSPADD = (_XTAL_FREQ/(4*feq_K*1000))-1; //Setting Clock Speed pg99/234
   SSPSTAT = 0b00000000;    //pg83/234
 }
 

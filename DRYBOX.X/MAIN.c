@@ -5,7 +5,7 @@
  * Created on May 23, 2021, 7:03 AM
  */
 
-//#define SSD1306_128_64
+#define SSD1306_128_64
 #include "I2C.h"
 #include "SSD1306.h"
 #include <xc.h>
@@ -32,7 +32,7 @@
 #pragma config WRT = OFF        // Flash Program Memory Self Write Enable bits (Write protection off)
 
 
-#define DS1         PORTBbits.RB0       //Blinky
+#define DS1        PORTBbits.RB0       //Blinky
 #define DS1_TRIS   TRISBbits.TRISB0    //Blinky-Tri state buffer
 
 //void Setup(void);
@@ -61,27 +61,36 @@ void Setup(void){
     OSCTUNE = 0x00;
     
     __delay_ms(1000);
-    I2C_Initialize(2000);      //Initialize I2C Master with 100KHz clock
+    I2C_Initialize(100);      //Initialize I2C Master with 100KHz clock
     // clear the display
+    SSD1306_Init(SSD1306_SWITCHCAPVCC, SSD1306_I2C_ADDRESS);
     SSD1306_ClearDisplay();
     DS1_TRIS = 0;
     DS1 = 0;
     while(1) {
         DS1 = 0;
         SSD1306_GotoXY(1,1);
-        oled_puts("I wanna be", 1);
-        SSD1306_GotoXY(1,2);
-        oled_puts("the", 2);
-        SSD1306_GotoXY(5,2);
-        oled_puts("very", 3);
-        SSD1306_GotoXY(2,5);
-        oled_puts("BEST", 4);
-        __delay_ms(1000);
-        //SSD1306_ClearDisplay();
+        oled_puts("Our name are: ", 1);
+        SSD1306_GotoXY(5,3);
+        oled_puts("Low Si Hui", 1);
+        SSD1306_GotoXY(10,5);
+        oled_puts("&", 1);
+        SSD1306_GotoXY(5,7);
+        oled_puts("Low Si En", 1);
+        //SSD1306_GotoXY(1,1);
+        //oled_puts("I wanna be", 1);
+        //SSD1306_GotoXY(1,2);
+        //oled_puts("the", 2);
+        //SSD1306_GotoXY(5,2);
+        //oled_puts("very", 3);
+        //SSD1306_GotoXY(2,5);
+        //oled_puts("BEST", 4);
+        __delay_ms(2000);
+        
         //toggle();
         DS1 = 1;
-        __delay_ms(1000);
-        
+        __delay_ms(2000);
+        SSD1306_ClearDisplay();
         
     }
     
