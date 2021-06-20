@@ -50,11 +50,19 @@ void AHT10_RESET(void){
 } 
 
 void AHT10_INIT(void){
+    
+    unsigned char stat;
+    
     I2C_Begin();
     I2C_Write(AHT10_WRITE_ADDRESS);
     I2C_Write(AHT10_INIT_CMD);
     I2C_Write(AHT10_INIT_CAL_ENABLE);
     I2C_Write(AHT10_INIT_NORMAL_MODE);
+    I2C_End();
+    
+    I2C_Begin();
+    I2C_Write(AHT10_READ_ADDRESS);
+    stat = I2C_Read(0);
     I2C_End();
 }
 

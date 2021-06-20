@@ -47,15 +47,17 @@ void I2C_Write(unsigned data)
 //unsigned short I2C_Read(unsigned short ack)
 unsigned char I2C_Read(unsigned char ack)
 {
-  unsigned char incoming;
+  unsigned char incoming, buf_stat1, buf_stat2, buf_stat3;
+  
+  buf_stat1 = SSPSTAT;
   I2C_Hold();
   RCEN = 1;
-
+  buf_stat2 = SSPSTAT;
   I2C_Hold();
   incoming = SSPBUF;      //get the data saved in SSPBUF
-
-  I2C_Hold();
-  ACKDT = (ack)?0:1;    //check if ack bit received 
+  buf_stat3 = SSPSTAT;
+  //I2C_Hold();
+  //ACKDT = (ack)?0:1;    //check if ack bit received 
   ACKEN = 1;          //pg 85/234
 
   return incoming;
